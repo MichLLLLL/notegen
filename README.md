@@ -5,6 +5,7 @@
 Infos sur la lecture des notes :
  - Oscillateur : triangle
  - Volume : 0dB
+ - Fait avec : la [Web Audio API](https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API)
 
 #### ⚠️- ATTENTION -⚠️
  - Si vous jouez la note, vous ne pouvez le faire qu'une seule fois (c'est même dit dans le site)
