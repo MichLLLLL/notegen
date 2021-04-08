@@ -2,7 +2,14 @@
 
 ### [Générateur de notes](https://michlllll.github.io/notegen/) fait avec :heart: par Kamboo.
 
-Infos sur la lecture des notes :
+#### Langages utilisés :
+ - HTML (mais alors là pas beaucoup hein)
+ - CSS (ça fait du bien un peu de style)
+ - JavaScript (WOULA LALALALA LÀ Y'EN A BEAUCOUP !)
+
+ - :heart: Amour (ça fait toujours du bien, il faudrait qu'il y'en ait partout ^^ 🤗)
+
+#### Infos sur la lecture des notes :
  - Oscillateur : triangle
  - Volume : 0dB
  - Fait avec : la [Web Audio API](https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API)
