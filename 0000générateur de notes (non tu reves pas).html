@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Kamboo#9639">
+	<meta name="description" content="Si vous avez envie de trouver des notes sans vous casser la tête, allez ici ! Attention, ça peut être assez experimental...">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Générateur de notes">
+	<meta name=theme-color content=#1e90ff>
+    <title>Générateur de notes</title>
+</head>
+<body>
+    <p>Note générée : <h1 id="rlt"></h2></p>
+    <style>
+        body{
+            background-color: #1e90ff;
+            color: khaki;
+            text-align: center;
+            white-space: nowrap;
+            font-family: monospace;
+            font-size: 20pt;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #rlt {
+            font-size: 50pt;
+            color: palegreen;
+            text-transform: capitalize;
+            text-shadow: 10px 10px 2px rgb(0, 197, 138);
+        }
+        .note {
+            cursor: pointer;
+            font-size: 14pt;
+            font-family: 'Consolas', monospace;
+            border: 1px solid khaki;
+            width: 150px;
+            position: relative;
+            top: -30px;
+        }
+        #container-before {
+            display: flex;
+            justify-content: center;
+        }
+        #container-before #premier {
+            position: relative;
+        }
+        #container-before #premier:after {
+            /* display: none; */
+            content:attr(data-text);
+            background-color: #0d66be;
+            width: 180px;
+            padding: 15px;
+            white-space: normal;
+            position: absolute;
+            bottom: 20px;
+            left: -18.75%;
+            opacity: 0;
+            transition: all .2s ease;
+        }
+        #container-before #premier:hover:after {
+            /* display: inline; */
+            opacity: 1;
+            bottom: 40px;
+            box-shadow: 0px 0px 0px 10000px #0a3158a2;
+        }
+        #encore {
+            position: relative;
+            top: -30px;
+            background: #1874cf;
+            border-radius: 15px;
+            padding: 15px;
+            cursor: pointer;
+            width: 150px;
+            color: indigo;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            transition: all .2s ease-in-out;
+        }
+        #encore:hover {
+            border-radius: 50px;
+            transform: scale(1.2) skewY(-5deg);
+        }
+        .avant-footer {
+            margin-top: -30px;
+        }
+    </style>
+    <script>
+        var note = ["do", "ré", "mi", "fa", "sol", "la", "si"]; // oui je sais note faut le mettre au pluriel mais bon ca va hein oh
+        var anglo = ["C", "D", "E","F", "G", "A", "B"];
+        var alt = ["#", "♭", ""];
+
+        let clavier = "| U U | U U U |\n| | | | | | | |";
+        let hautDuClavier = "| U U | U U U |".split(""); // que pour les feintes
+        let basDuClavieer = "| | | | | | | |".split(""); // y a deux "e" c'est normal c pour le visuel
+        /*
+        **** | U U | U U U | ****
+        **** | | | | | | | | **** c tro bô
+        */
+        let WOWLAVARIABLECOMPLIQUEE = {
+            do: basDuClavieer[1],
+            ré: basDuClavieer[3],
+            mi: basDuClavieer[5],
+            fa: basDuClavieer[7],
+            sol: basDuClavieer[9],
+            la: basDuClavieer[11],
+            si: basDuClavieer[13],
+            // dob: basDuClavieer[1],
+            // dod: basDuClavieer[1],
+            // réb: basDuClavieer[1],
+            // réd: basDuClavieer[1],
+        } // beta ^^
+
+        function aleatoire(arr) { // sert a rien finalement T-T
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+        
+        let alNoteNb = [Math.floor(Math.random() * note.length)];
+        var alN = note[alNoteNb];
+
+        // let alNoteANGLONb = [Math.floor(Math.random() * anglo.length)];
+        var alNANGLO = anglo[alNoteNb];
+
+        let alAltNb = [Math.floor(Math.random() * alt.length)];
+        var alAl = alt[alAltNb];
+
+        let tout = alN + alAl;
+        let toutAnglo = alNANGLO + alAl;
+
+        // WOWLAVARIABLECOMPLIQUEE[alN].replace(' ', '-')
+
+        let frequencePourNote = {
+            do: 130.81,
+            ré: 146.83,
+            mi: 164.81,
+            fa: 174.61,
+            sol: 195.99,
+            la: 220, // lui au moins il dait chier personne
+            si: 246.94,
+        }
+
+        // LES OSCILLATEURS = THE BEST TRUC
+        
+        let freq = frequencePourNote[alN];
+        if(tout.endsWith('#')) {
+            freq += 7.5;
+        } else if (tout.endsWith('♭')) {
+            freq -= 8;
+        }
+            
+            var contexteAudio = new window.AudioContext();
+            var oscillateur = contexteAudio.createOscillator();
+            var noeudGain = contexteAudio.createGain();
+            oscillateur.connect(noeudGain);
+            noeudGain.connect(contexteAudio.destination);
+            oscillateur.type = 'triangle';
+            noeudGain.gain.value = 0.75;  
+            oscillateur.frequency.value = freq;
+        
+            
+        
+        function jouerNote() {
+            oscillateur.start();
+        }
+        function stopperNote() {
+            oscillateur.stop();
+        }
+        function cacher1() {
+            document.getElementById("premier").style.display = 'none';
+            document.getElementById("deuxieme").style.display = 'inline';
+        }
+        function cacher2() {
+            document.getElementById("deuxieme").style.display = 'none';
+            document.getElementById("premier").style.display = 'inline';
+        }
+
+        document.getElementById("rlt").innerHTML = `${alN}${alAl}<br> - <br> ${alNANGLO}${alAl}`;
+        console.log(`${alN}${alAl}.`);
+        // console.log(basDuClavieer.join(""));
+    </script>
+    <div id="container-before"><span data-text="La note ne peut être jouée qu'une seule fois !" id="premier" class="note" onclick="jouerNote(), cacher1()">Jouer la note</span><span onclick="stopperNote(), cacher2()" id="deuxieme" class="note" style="display: none;">Couper la note</span></div><br>
+    <div id="container-before"><div id="encore" onclick="window.location.reload()">ENCORE !</div></div>
+    <span class="avant-footer">____________________</span>
+    <footer style="font-size: 13pt;">Fait avec ❤ par Kamboo</footer>
+</body>
+</html>
