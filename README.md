@@ -7,9 +7,11 @@
  - CSS (ça fait du bien un peu de style)
  - JavaScript (WOULA LALALALA LÀ Y'EN A BEAUCOUP !)
 
+
  - :heart: Amour (ça fait toujours du bien, il faudrait qu'il y'en ait partout ^^ 🤗)
 
 #### Infos sur la lecture des notes :
+ - **Ne marche pas avec Internet Explorer (toutes versions)**
  - Oscillateur : triangle
  - Volume : 0dB
  - Fait avec : la [Web Audio API](https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API)
