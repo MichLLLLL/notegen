@@ -19,24 +19,26 @@
 	<meta property="title" content="Générateur de notes">
 
 	<meta name=theme-color content=#1e90ff>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022433879609365"
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022433879609365"
+
      crossorigin="anonymous"></script>
 
     <title>Générateur de notes</title>
 
 </head>
 
-<body>
+<body onload="dbt()">
  <br>
  <br>
  <br>
  <br>
-    <div id="btn-polconf" onclick="politconf()" title="Afficher ou masquer la charte de confidentialité">
+ <!--<div id="btn-polconf" onclick="politconf()" title="Afficher ou masquer la charte de confidentialité">
 
             Afficher la charte de<br>confidentialité
 
     </div>
-
+-->
     <div id="polconf">
 
 
@@ -146,8 +148,8 @@
 
             text-align: left;
 
-            display: none;
-
+           /* display: none;
+*/
             /*margin: 2vh;*/
 
             z-index: 2;
@@ -157,9 +159,9 @@
             top: 0;
             left: 0;
 
-            background: #1e90ff;
+            background: #1e80ff;
 
-            border: 3vh solid #1e90ff;
+            border: 3vh solid #1e80ff;
 
             line-height: 1.3;
 
@@ -168,6 +170,9 @@
 
 
             max-width: 90vw;
+
+            height: 50vh;
+         overflow: scroll;
          
 
             font-family: monospace;
@@ -335,7 +340,9 @@
         let btnPolconf = document.getElementById('btn-polconf');
 
         let polconf = document.getElementById('polconf');
-
+        function dbt() {
+            polconf.scroll(0, 67)
+        }
 
 
         // Ajout de l'événement clic pour basculer l'affichage de la div polconf
@@ -557,3 +564,4 @@
 </body>
 
 </html>
+
