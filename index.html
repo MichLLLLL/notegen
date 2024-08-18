@@ -1,189 +1,564 @@
+
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
     <meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<meta name="creator" content="Kamboo#9639">
+
 	<meta name="description" content="Si vous avez envie de trouver des notes sans vous casser la tête, allez ici ! Attention, ça peut être assez experimental...">
+
 	<meta property="type" content="website">
+
 	<meta property="title" content="Générateur de notes">
+
 	<meta name=theme-color content=#1e90ff>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022433879609365"
+
+     crossorigin="anonymous"></script>
+
     <title>Générateur de notes</title>
+
 </head>
+
 <body>
-    <p>Note générée : <h1 id="rlt"></h2></p>
+ <br>
+ <br>
+ <br>
+ <br>
+    <div id="btn-polconf" onclick="politconf()" title="Afficher ou masquer la charte de confidentialité">
+
+            Afficher la charte de<br>confidentialité
+
+    </div>
+
+    <div id="polconf">
+
+
+
+        <h1>Charte de Confidentialité</h1>
+
+        <p>Nous nous engageons à protéger la confidentialité de nos utilisateurs. Cette charte décrit la collecte, l'utilisation et le partage des données lorsque vous visitez notre site.</p>
+
+        <p style="font-weight: bold;">
+
+                Pour plus d'informations, visitez la page Google 
+
+                <a style="color: black;" href="https://policies.google.com/technologies/partner-sites" target="_blank">
+
+                    Comment utilisons-nous les informations collectées via les sites ou applications qui font appel à nos services ?
+
+                </a>
+
+        </p>
+
+        <h2>Collecte et Utilisation des Données</h2>
+
+        <p>Nous collectons des informations telles que l'adresse IP, le type de navigateur, et les pages visitées. Ces données sont utilisées pour améliorer votre expérience utilisateur.</p>
+
+   
+
+        <h2>Cookies et Technologies Similaires</h2>
+
+        <p>Des tiers, y compris Google, peuvent placer des cookies sur votre navigateur ou utiliser des pixels espions pour collecter des données à des fins de diffusion d'annonces ciblées sur notre site.</p>
+
+  
+
+        <h2>Partage des Données</h2>
+
+        <p>Nous ne partageons pas vos données personnelles avec des tiers sans votre consentement, sauf dans les cas nécessaires pour fournir nos services ou pour se conformer à la loi.</p>
+
+ 
+
+        <h2>Vos Droits</h2>
+
+        <p>Vous avez le droit de demander l'accès, la modification ou la suppression de vos données personnelles. Pour toute question ou demande concernant cette charte de confidentialité, veuillez nous contacter.</p>
+
+     <br>
+
+     <br>
+
+    </div>
+
+    
+
+    <p id="global">Note générée : <h1 id="rlt"></h2></p>
+
     <style>
+
         body{
+
             background-color: #1e90ff;
+
             color: khaki;
+
             text-align: center;
+
             white-space: nowrap;
+
             font-family: monospace;
+
             font-size: 20pt;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
         }
-        #rlt {
-            font-size: 50pt;
-            color: palegreen;
-            text-transform: capitalize;
-            text-shadow: 10px 10px 2px rgb(0, 197, 138);
-        }
-        .note {
-            cursor: pointer;
-            font-size: 14pt;
-            font-family: 'Consolas', monospace;
-            border: 1px solid khaki;
-            width: 150px;
-            position: relative;
-            top: -30px;
-        }
-        #container-before {
-            display: flex;
-            justify-content: center;
-        }
-        #container-before #premier {
-            position: relative;
-        }
-        #container-before #premier:after {
-            /* display: none; */
-	    pointer-events: none;
-            content:attr(data-text);
-            background-color: #0d66be;
-            width: 180px;
-            padding: 15px;
-            white-space: normal;
-            position: absolute;
-            bottom: 20px;
-            left: -18.75%;
-            opacity: 0;
-            transition: all .2s ease;
-        }
-        #container-before #premier:hover:after {
-            /* display: inline; */
-            opacity: 1;
-            bottom: 40px;
-            box-shadow: 0px 0px 0px 10000px #0a3158a2;
-        }
-        #encore {
-            position: relative;
-            top: -30px;
-            background: #1874cf;
-            border-radius: 15px;
-            padding: 15px;
-            cursor: pointer;
-            width: 150px;
-            color: indigo;
+
+        #btn-polconf {
+
+	/*	position: fixed;
+
+		top: 45vh;
+
+		right: 5vh;
+*/
+            word-break: break-word;
+            background: #1e90ff;
+
+            font-family: monospace;
+
+            font-size: 17pt;
+
+            text-decoration: underline 1px;
+
+            padding: 2vw;
+
             text-align: center;
+            cursor: pointer;
+
+            z-index: 3;
+            border: 5px solid #1e70ff;
+
+        }
+
+ 
+
+        #polconf {
+
+            text-align: left;
+
+            display: none;
+
+            /*margin: 2vh;*/
+
+            z-index: 2;
+
+            position: relative;
+
+            top: 0;
+            left: 0;
+
+            background: #1e90ff;
+
+            border: 3vh solid #1e90ff;
+
+            line-height: 1.3;
+
+		white-space: pre-line;
+
+
+
+            max-width: 90vw;
+
+            height: 100vh;
+
+         
+
+            font-family: monospace;
+
+            font-size: 15pt;
+
+        }
+
+        
+
+        #rlt {
+
+            font-size: 50pt;
+
+            color: palegreen;
+
+            text-transform: capitalize;
+
+            text-shadow: 10px 10px 2px rgb(0, 197, 138);
+
+        }
+
+        .note {
+
+            cursor: pointer;
+
+            font-size: 14pt;
+
+            font-family: 'Consolas', monospace;
+
+            border: 1px solid khaki;
+
+            width: 150px;
+
+            position: relative;
+
+            top: -30px;
+
+        }
+
+        #container-before {
+
             display: flex;
+
             justify-content: center;
+
+        }
+
+        #container-before #premier {
+
+            position: relative;
+
+        }
+
+        #container-before #premier:after {
+
+            /* display: none; */
+
+	    pointer-events: none;
+
+            content:attr(data-text);
+
+            background-color: #0d66be;
+
+            width: 180px;
+
+            padding: 15px;
+
+            white-space: normal;
+
+            position: absolute;
+
+            bottom: 20px;
+
+            left: -18.75%;
+
+            opacity: 0;
+
+            transition: all .2s ease;
+
+        }
+
+        #container-before #premier:hover:after {
+
+            /* display: inline; */
+
+            opacity: 1;
+
+            bottom: 40px;
+
+            box-shadow: 0px 0px 0px 10000px #0a3158a2;
+
+        }
+
+        #encore {
+
+            position: relative;
+
+            top: -30px;
+
+            background: #1874cf;
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            cursor: pointer;
+
+            width: 150px;
+
+            color: indigo;
+
+            text-align: center;
+
+            display: flex;
+
+            justify-content: center;
+
             transition: all .2s ease-in-out;
+
         }
+
         #encore:hover {
+
             border-radius: 50px;
+
             transform: scale(1.2) skewY(-5deg);
+
         }
+
         .avant-footer {
+
             margin-top: -30px;
+
         }
+
+
+
+/*        @media (max-width: 800px) {
+
+             #btn-polconf {
+
+			position: fixed;
+
+			top: 5vh;
+
+			right: 5vh;
+
+		}
+
+		#global {
+
+			position: relative;
+
+			top:0;
+
+		}
+
+        }*/
+
     </style>
+
     <script>
+
+        let btnPolconf = document.getElementById('btn-polconf');
+
+        let polconf = document.getElementById('polconf');
+
+
+
+        // Ajout de l'événement clic pour basculer l'affichage de la div polconf
+
+        function politconf() {
+
+            if (polconf.style.display == '' || polconf.style.display == 'none') {
+
+                polconf.style.display = 'block';
+
+		btnPolconf.style.top = '5vh';
+
+                btnPolconf.innerHTML = 'Masquer la charte de<br>confidentialité';
+
+            } else if (polconf.style.display == 'block') {
+
+                polconf.style.display = 'none';
+
+		btnPolconf.style.top = '45vh';
+
+                btnPolconf.innerHTML = 'Afficher la charte de<br>confidentialité';
+
+            }
+
+        }
+
         var note = ["do", "ré", "mi", "fa", "sol", "la", "si"]; // oui je sais note faut le mettre au pluriel mais bon ca va hein oh
+
         var anglo = ["C", "D", "E","F", "G", "A", "B"];
+
         var alt = ["#", "♭", ""];
 
+
+
         let clavier = "| U U | U U U |\n| | | | | | | |";
+
         let hautDuClavier = "| U U | U U U |".split(""); // que pour les feintes
+
         let basDuClavieer = "| | | | | | | |".split(""); // y a deux "e" c'est normal c pour le visuel
+
         /*
+
         **** | U U | U U U | ****
+
         **** | | | | | | | | **** c tro bô
+
         */
+
         let WOWLAVARIABLECOMPLIQUEE = {
+
             do: basDuClavieer[1],
+
             ré: basDuClavieer[3],
+
             mi: basDuClavieer[5],
+
             fa: basDuClavieer[7],
+
             sol: basDuClavieer[9],
+
             la: basDuClavieer[11],
+
             si: basDuClavieer[13],
+
             // dob: basDuClavieer[1],
+
             // dod: basDuClavieer[1],
+
             // réb: basDuClavieer[1],
+
             // réd: basDuClavieer[1],
+
         } // beta ^^
 
+
+
         function aleatoire(arr) { // sert a rien finalement T-T
+
             return arr[Math.floor(Math.random() * arr.length)];
+
         }
+
         
+
         let alNoteNb = [Math.floor(Math.random() * note.length)];
+
         var alN = note[alNoteNb];
 
+
+
         // let alNoteANGLONb = [Math.floor(Math.random() * anglo.length)];
+
         var alNANGLO = anglo[alNoteNb];
 
+
+
         let alAltNb = [Math.floor(Math.random() * alt.length)];
+
         var alAl = alt[alAltNb];
 
+
+
         let tout = alN + alAl;
+
         let toutAnglo = alNANGLO + alAl;
+
+
 
         // WOWLAVARIABLECOMPLIQUEE[alN].replace(' ', '-')
 
+
+
         let frequencePourNote = {
+
             do: 130.81,
+
             ré: 146.83,
+
             mi: 164.81,
+
             fa: 174.61,
+
             sol: 195.99,
+
             la: 220, // lui au moins il fait chier personne
+
             si: 246.94,
+
         }
+
+
 
         // LES OSCILLATEURS = THE BEST TRUC
+
         
+
         let freq = frequencePourNote[alN];
+
         if(tout.endsWith('#')) {
+
             freq += 7.5;
+
         } else if (tout.endsWith('♭')) {
+
             freq -= 8.5;
-        }
-            
-            var contexteAudio = new window.AudioContext();
-            var oscillateur = contexteAudio.createOscillator();
-            var noeudGain = contexteAudio.createGain();
-            oscillateur.connect(noeudGain);
-            noeudGain.connect(contexteAudio.destination);
-            oscillateur.type = 'triangle';
-            noeudGain.gain.value = 0.75;  
-            oscillateur.frequency.value = freq;
-        
-            
-        
-        function jouerNote() {
-            oscillateur.start();
-        }
-        function stopperNote() {
-            oscillateur.stop();
-        }
-        function cacher1() {
-            document.getElementById("premier").style.display = 'none';
-            document.getElementById("deuxieme").style.display = 'inline';
-        }
-        function cacher2() {
-            document.getElementById("deuxieme").style.display = 'none';
-            document.getElementById("premier").style.display = 'inline';
+
         }
 
+            
+
+            var contexteAudio = new window.AudioContext();
+
+            var oscillateur = contexteAudio.createOscillator();
+
+            var noeudGain = contexteAudio.createGain();
+
+            oscillateur.connect(noeudGain);
+
+            noeudGain.connect(contexteAudio.destination);
+
+            oscillateur.type = 'triangle';
+
+            noeudGain.gain.value = 0.75;  
+
+            oscillateur.frequency.value = freq;
+
+        
+
+            
+
+        
+
+        function jouerNote() {
+
+            oscillateur.start();
+
+        }
+
+        function stopperNote() {
+
+            oscillateur.stop();
+
+        }
+
+        function cacher1() {
+
+            document.getElementById("premier").style.display = 'none';
+
+            document.getElementById("deuxieme").style.display = 'inline';
+
+        }
+
+        function cacher2() {
+
+            document.getElementById("deuxieme").style.display = 'none';
+
+            document.getElementById("premier").style.display = 'inline';
+
+        }
+
+
+
         document.getElementById("rlt").innerHTML = `${alN}${alAl}<br> - <br> ${alNANGLO}${alAl}`;
+
         console.log(`${alN}${alAl}.`);
+
         // console.log(basDuClavieer.join(""));
+
     </script>
+
     <div id="container-before"><span data-text="La note ne peut être jouée qu'une seule fois !" id="premier" class="note" onclick="jouerNote(), cacher1()">Jouer la note</span><span onclick="stopperNote(), cacher2()" id="deuxieme" class="note" style="display: none;">Couper la note</span></div><br>
+
     <div id="container-before"><div id="encore" onclick="window.location.reload()">ENCORE !</div></div>
+
     <span class="avant-footer">____________________</span>
+
     <footer style="font-size: 13pt;">Fait avec ❤ par Kamboo</footer>
+
 </body>
+
 </html>
