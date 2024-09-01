@@ -19,7 +19,6 @@
 	<meta property="title" content="Générateur de notes">
 
 	<meta name=theme-color content=#1e90ff>
-	<meta http-equiv="Content-Security-Policy" content="frame-ancestors http://node1.adky.net:2648"/>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022433879609365"
 
@@ -30,7 +29,11 @@
 	<title>Générateur de notes</title>
 
 </head>
-<body>
+<body onload="dbt()">
+	<div id="chargement">
+		<div class="loader"></div>
+		<h3>Veuillez patientez, nous configurons votre interface...</h3>
+	</div>
     <div id="content">
 	<iframe width="100%" height="100%" frameborder="0" src="//node1.adky.net:2648/test"></iframe>
     </div>
@@ -40,10 +43,30 @@
     {
 	margin: 0; padding: 0; height: 100%; overflow: hidden;
     }
+	#chargement {
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		  justify-content: center;
+		  align-items: center;
+	}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
     #content
     {
-	position:absolute; left: 0; right: 0; bottom: 0; top: 0px; 
+	position:absolute; left: 0; right: 0; bottom: 0; top: 0px; display: none;
     }
 </style>
 	<!--
@@ -337,7 +360,7 @@
 
         }*/
 
-    </style>
+    </style>-->
 
     <script>
 
@@ -348,9 +371,10 @@
         let polconf = document.getElementById('polconf');
         function dbt() {
 	    setTimeout(()=>{
-		document.body.style.display ="block"
+		document.getElementById("content").style.display ="block";
+		document.getElementById("chargement").style.display ="none";
 	    }, 3000)
-            polconf.scroll(0, 67)
+            // polconf.scroll(0, 67)
         }
 
 
